@@ -1,11 +1,11 @@
 package com.projeto.compasso.pedido.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import com.projeto.compasso.pedido.controller.dto.PessoaDto;
+import com.projeto.compasso.pedido.convert.PessoaConvert;
 import com.projeto.compasso.pedido.model.Pessoa;
 import com.projeto.compasso.pedido.repository.PessoaRepository;
 
@@ -23,15 +23,19 @@ public class PessoaController {
     @Autowired
     private PessoaRepository repository;
 
+    @Autowired
+    private PessoaConvert pessoaConvert;
+
     @PostMapping
     @Transactional
-    public PessoaDto postar(@RequestBody Pessoa pessoa) {
-
+    public PessoaDto postar(@RequestBody Pessoa p) {
+        Pessoa pessoa = repository.save(p);
+        return pessoaConvert.toPessoaDto(pessoa);
     }
 
     @GetMapping
     public List<PessoaDto> listar() {
         List<Pessoa> pessoas = repository.findAll();
-        return convert
+        return pessoaConvert.toPessoaDto(pessoas);
     }
 }

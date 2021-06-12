@@ -1,9 +1,7 @@
 package com.projeto.compasso.pedido.controller.dto;
 
 import javax.validation.constraints.NotBlank;
-import lombok.Getter;
 
-@Getter
 public class EnderecoDto {
     @NotBlank
     private String pais;
