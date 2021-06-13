@@ -1,16 +1,27 @@
 package com.projeto.compasso.pedido.controller.dto;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class EnderecoDto {
-    @NotBlank
-    private String pais;
-    @NotBlank
-    private String estado;
-    @NotBlank
+
+    @NotNull
     private String cidade;
-    @NotBlank
-    private String cep;
-    @NotBlank
+    @NotNull
     private String rua;
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public void setRua(String rua) {
+        this.rua = rua;
+    }
 }

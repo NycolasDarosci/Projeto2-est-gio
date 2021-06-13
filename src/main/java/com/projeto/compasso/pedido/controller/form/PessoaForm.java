@@ -1,23 +1,22 @@
 package com.projeto.compasso.pedido.controller.form;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.projeto.compasso.pedido.model.Endereco;
 
 public class PessoaForm {
-    @NotBlank
+    @NotNull
     private String nome;
-    @NotBlank
+    @NotNull
     private String cpf;
-    @NotBlank
-    private Double salario;
-    @NotBlank
+    @NotNull
+    private double salario;
+    @NotNull
     private char sexo;
-    @NotBlank
-    List<Endereco> endereco = new ArrayList<>();
+    @NotNull
+    List<Endereco> endereco;
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -27,7 +26,7 @@ public class PessoaForm {
         this.cpf = cpf;
     }
 
-    public void setSalario(Double salario) {
+    public void setSalario(double salario) {
         this.salario = salario;
     }
 
@@ -47,7 +46,7 @@ public class PessoaForm {
         return cpf;
     }
 
-    public Double getSalario() {
+    public double getSalario() {
         return salario;
     }
 

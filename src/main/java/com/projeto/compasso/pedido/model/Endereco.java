@@ -4,9 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "endereco")
@@ -15,18 +17,19 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
+    @NotNull
     private String pais;
-    @NotBlank
+    @NotNull
     private String estado;
-    @NotBlank
+    @NotNull
     private String cidade;
-    @NotBlank
+    @NotNull
     private String cep;
-    @NotBlank
+    @NotNull
     private String rua;
 
     @ManyToOne
+    @JoinColumn(name = "pessoa_id", nullable = false)
     private Pessoa pessoa;
 
     public String getPais() {

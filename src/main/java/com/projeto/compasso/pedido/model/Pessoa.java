@@ -5,12 +5,13 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "pessoa")
@@ -19,22 +20,18 @@ public class Pessoa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotNull
     private String nome;
-    @NotBlank
+    @NotNull
     private String cpf;
-    @NotBlank
-    private Double salario;
-    @NotBlank
+    @NotNull
+    private double salario;
+    @NotNull
     private char sexo;
 
-    @NotBlank
-    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
+    @NotNull
+    @OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Endereco> endereco = new ArrayList<>();
-
-    public Pessoa(List<Endereco> endereco2) {
-        this.endereco = endereco2;
-    }
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -44,7 +41,7 @@ public class Pessoa {
         this.cpf = cpf;
     }
 
-    public void setSalario(Double salario) {
+    public void setSalario(double salario) {
         this.salario = salario;
     }
 
@@ -64,7 +61,7 @@ public class Pessoa {
         return cpf;
     }
 
-    public Double getSalario() {
+    public double getSalario() {
         return salario;
     }
 

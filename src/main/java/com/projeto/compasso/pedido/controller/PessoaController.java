@@ -8,13 +8,12 @@ import javax.validation.Valid;
 import com.projeto.compasso.pedido.controller.dto.PessoaDto;
 import com.projeto.compasso.pedido.controller.form.PessoaForm;
 import com.projeto.compasso.pedido.convert.PessoaConvert;
-import com.projeto.compasso.pedido.model.Endereco;
 import com.projeto.compasso.pedido.model.Pessoa;
-import com.projeto.compasso.pedido.repository.EnderecoRepository;
 import com.projeto.compasso.pedido.repository.PessoaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,24 +29,22 @@ public class PessoaController {
     private PessoaRepository pessoaRepository;
 
     @Autowired
-    private EnderecoRepository enderecoRepository;
-
-    @Autowired
     private PessoaConvert convert;
 
     @PostMapping
     @Transactional
     @ResponseStatus(HttpStatus.CREATED)
     public PessoaForm postar(@RequestBody @Valid Pessoa p) {
-        List<Endereco> endereco = p.getEndereco();
-        Pessoa pessoa = new Pessoa(endereco);
-        Pessoa pessoaSave = pessoaRepository.save(pessoa);
+        Pessoa pessoaSave = pessoaRepository.save(p);
         return convert.toPessoaForm(pessoaSave);
     }
 
     @GetMapping
-    public List<PessoaDto> listar() {
+    public ResponseEntity<List<PessoaDto>> listar() {
         List<Pessoa> pessoas = pessoaRepository.findAll();
-        return convert.toPessoaDto(pessoas);
+        if (pessoas.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(convert.toPessoaDto(pessoas));
     }
 }

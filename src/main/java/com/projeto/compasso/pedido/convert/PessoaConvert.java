@@ -16,8 +16,6 @@ public class PessoaConvert {
         PessoaDto pessoaDto = new PessoaDto();
         pessoaDto.setNome(pessoa.getNome());
         pessoaDto.setCpf(pessoa.getCpf());
-        pessoaDto.setSalario(pessoa.getSalario());
-        pessoaDto.setSexo(pessoa.getSexo());
         pessoaDto.setEndereco(pessoa.getEndereco());
         return pessoaDto;
     }
@@ -39,4 +37,5 @@ public class PessoaConvert {
     public List<PessoaForm> toPessoaForm(List<Pessoa> pessoa) {
         return pessoa.stream().map(x -> toPessoaForm(x)).collect(Collectors.toList());
     }
+
 }
