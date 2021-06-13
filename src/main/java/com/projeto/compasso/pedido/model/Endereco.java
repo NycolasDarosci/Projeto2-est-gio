@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -25,4 +26,26 @@ public class Endereco {
     @NotBlank
     private String rua;
 
+    @ManyToOne
+    private Pessoa pessoa;
+
+    public String getPais() {
+        return pais;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getRua() {
+        return rua;
+    }
 }

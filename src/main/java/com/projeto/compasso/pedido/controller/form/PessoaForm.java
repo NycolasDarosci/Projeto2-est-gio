@@ -1,24 +1,13 @@
-package com.projeto.compasso.pedido.model;
+package com.projeto.compasso.pedido.controller.form;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-@Entity
-@Table(name = "pessoa")
-public class Pessoa {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+import com.projeto.compasso.pedido.model.Endereco;
 
+public class PessoaForm {
     @NotBlank
     private String nome;
     @NotBlank
@@ -27,14 +16,8 @@ public class Pessoa {
     private Double salario;
     @NotBlank
     private char sexo;
-
     @NotBlank
-    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
-    private List<Endereco> endereco = new ArrayList<>();
-
-    public Pessoa(List<Endereco> endereco2) {
-        this.endereco = endereco2;
-    }
+    List<Endereco> endereco = new ArrayList<>();
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -75,4 +58,5 @@ public class Pessoa {
     public List<Endereco> getEndereco() {
         return endereco;
     }
+
 }
