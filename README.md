@@ -4,7 +4,7 @@
 <p>Desenvolver uma aplicação Spring Boot, contendo no mínimo dois end-points, autenticação e documentação!</p>
 <h3>Tecnologias utilizadas</h3>
 <div>
-	<p>- Banco de dados: MySql e Jpa</p>
+	<p>Banco de dados: MySql e Jpa</p>
 	<p>Linguagem Java</p>
 	<p>Framework Spring Boot</p>
 	<p>Arquitetura API Rest</p>
