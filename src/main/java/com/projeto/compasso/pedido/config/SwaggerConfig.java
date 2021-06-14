@@ -26,7 +26,7 @@ public class SwaggerConfig {
     }
 
     private ApiInfo metaInfo() {
-        ApiInfo api = new ApiInfo("Projeto Compasso", "Segundo projeto proposto pela Compasso",
+        ApiInfo api = new ApiInfo("Projeto Compasso", "Segundo projeto proposto pela Compasso.",
                 "Criado por Nycolas Darosci", "Terms",
                 new Contact("Nycolas", "https://github.com/NycolasDarosci", "nycoollaas@gmail.com"), null, null,
                 new ArrayList<VendorExtension>());
